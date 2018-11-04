@@ -1,0 +1,39 @@
+{
+  "name": "sendit",
+  "version": "1.0.0",
+  "description": "SendIT is a courier service that helps users deliver parcels to different destinations",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "nodemon --exec babel-node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kayroy247/SendIT.git"
+  },
+  "keywords": [
+    "SendIT",
+    "courier",
+    "application",
+    "Restful",
+    "API"
+  ],
+  "author": "Okunlade Kayode",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kayroy247/SendIT/issues"
+  },
+  "homepage": "https://github.com/kayroy247/SendIT#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "nodemon": "^1.18.5"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}
