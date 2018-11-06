@@ -40,6 +40,8 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "joi": "^13.3.0",
+    "morgan": "^1.9.1"
   }
 }
