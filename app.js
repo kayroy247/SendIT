@@ -1,13 +1,13 @@
 import express from 'express';
 import morganLogger from 'morgan';
-import bodyParser from 'body-parser';
 import apiVersion1 from './server/apiVersions/apiVersion1';
 
 const app = express();
-const port = process.env.PORT || 3000;
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.set('port', process.env.PORT || 3000);
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(morganLogger('combined'));
 
 app.get('/', (req, res) => {
@@ -30,6 +30,8 @@ app.use((req, res) => {
 });
 
 
-app.listen(port, () => {
-  console.log(`Server running on port: ${port} ....`);
+app.listen(app.get('port'), () => {
+  console.log(`Server running on port: ${app.get('port')} ....`);
 });
+
+module.exports = app;

@@ -70,8 +70,21 @@ class ParcelController {
       });
       return;
     }
+    const user = users.find(c => c.email === req.body.email);
+    if (!user) {
+      res.status(404).json({
+        error: 'User Not Found'
+      });
+      return;
+    }
+    if (!(parcel.userId === user.userId)) {
+      res.status(401).json({
+        error: 'Unauthorized Action, Not Completed'
+      });
+      return;
+    }
     parcel.status = 'cancelled';
-    res.json({
+    res.status(200).json({
       message: 'Parcel Delivery Order Successfully Cancelled',
       data: parcel
     });
@@ -95,7 +108,7 @@ class ParcelController {
     }
     parcel.destination = req.body.destination;
     parcel.weight = req.body.weight;
-    res.json({
+    res.status(200).json({
       message: 'Parcel Delivery Order Successfully Updated',
       data: parcel
     });
