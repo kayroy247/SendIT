@@ -1,6 +1,9 @@
 import express from 'express';
 import morganLogger from 'morgan';
+import { config } from 'dotenv';
 import apiVersion1 from './server/apiVersions/apiVersion1';
+
+config();
 
 const app = express();
 
