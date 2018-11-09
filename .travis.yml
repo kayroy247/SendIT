@@ -4,11 +4,4 @@ node_js:
 addons:
     code_climate:
         repo_token: dc7796c48037deafdff1f480e460c34639bf9de4
-script: 
-  - npm run test
-  - istanbul cover node_modules/mocha/bin/_mocha -- -R spec ./server/test
-before_script:
-  - npm install codeclimate-test-reporter istanbul -g
-after_script:
-  - codeclimate-test-reporter < ./coverage/lcov.info
-  - npm run coverall
+after_success: npm run cover
