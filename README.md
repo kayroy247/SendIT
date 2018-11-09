@@ -10,13 +10,13 @@ User dashboard can be found [here](https://kayroy247.github.io/SendIT/UI/userDas
 #### SendIT Restful API on heroku
 [SendIT API](https://sendit-1.herokuapp.com/)
 
-## Available endpoints
+### Available endpoints
 
 
-## Author
+### Author
 Okunlade Kayode
 
-## Acknowledgment
+### Acknowledgment
 Special thanks to Andela for this wonderful experience.
 
 
