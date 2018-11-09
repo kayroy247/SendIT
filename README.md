@@ -7,16 +7,16 @@ SendIT is a courier service that helps users deliver parcels to different destin
 This is the link to the [UI Templates](https://kayroy247.github.io/SendIT/) on Github Pages.
 User dashboard can be found [here](https://kayroy247.github.io/SendIT/UI/userDashboard.html)
 
-#### SendIT Restful API heroku
+#### SendIT Restful API on heroku
 [SendIT API](https://sendit-1.herokuapp.com/)
 
-## Available endpoints
+### Available endpoints
 
 
-## Author
+### Author
 Okunlade Kayode
 
-## Acknowledgment
+### Acknowledgment
 Special thanks to Andela for this wonderful experience.
 
 
