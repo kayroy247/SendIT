@@ -4,15 +4,11 @@
   "description": "SendIT is a courier service that helps users deliver parcels to different destinations",
   "main": "app.js",
   "scripts": {
-    "testtravis": "set NODE_ENV=test && nyc --reporter=html --reporter=text-lcov mocha --require @babel/register ./server/test --timeout 10s --exit",
     "start": "nodemon --exec babel-node app.js",
-    "startdev": "node @babel/core app.js",
     "test": "cross-env NODE_ENV=test nyc mocha ./server/test --timeout 10s --exit",
-    "testist": "istanbul cover mocha -R @babel/register ./server/test --timeout 10s --exit",
     "coverall": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "coverage": "nyc report lcov.info | coveralls",
-    "cover": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "coveristanbul": "nyc ./node_modules/mocha/bin/_mocha ./server/test --report lcov --exit && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "cover": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "repository": {
     "type": "git",

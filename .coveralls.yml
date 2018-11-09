@@ -1,2 +1,1 @@
-service_name: process.env.SERVICE_NAME
 repo_token: process.env.REPO_TOKEN
