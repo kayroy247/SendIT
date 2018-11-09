@@ -4,4 +4,4 @@ node_js:
 addons:
     code_climate:
         repo_token: dc7796c48037deafdff1f480e460c34639bf9de4
-after_success: npm run cover
+after_success: npm run coverage
