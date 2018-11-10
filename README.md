@@ -16,8 +16,9 @@ User dashboard can be found [here](https://kayroy247.github.io/SendIT/UI/userDas
 ### Author
 Okunlade Kayode
 
-### Acknowledgment
-Special thanks to Andela for this wonderful experience.
+### LICENCE
+MIT
+
 
 
 
