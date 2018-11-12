@@ -11,4 +11,4 @@ router.put('/:id/', ParcelController.updateParcel);
 router.post('/', ParcelController.createParcel);
 router.delete('/:id', ParcelController.deleteParcel);
 
-module.exports = router;
+export default router;

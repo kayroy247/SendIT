@@ -137,4 +137,4 @@ class ParcelController {
   }
 }
 
-module.exports = ParcelController;
+export default ParcelController;

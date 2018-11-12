@@ -12,4 +12,4 @@ const users = [{
   address: 'malanby str, Lagos',
   isAdmin: false
 }];
-module.exports = users;
+export default users;

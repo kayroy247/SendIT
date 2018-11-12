@@ -28,4 +28,4 @@ const parcels = [{
   status: 'intransition'
 }
 ];
-module.exports = parcels;
+export default parcels;
