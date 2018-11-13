@@ -9,4 +9,4 @@ const validateInput = (input) => {
   return Joi.validate(input, schema);
 };
 
-module.exports = validateInput;
+export default validateInput;

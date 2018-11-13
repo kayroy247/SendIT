@@ -13,4 +13,4 @@ apiVersion1.get('/', (req, res) => {
 apiVersion1.use('/parcels', parcels);
 apiVersion1.use('/users', users);
 
-module.exports = apiVersion1;
+export default apiVersion1;
