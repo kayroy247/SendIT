@@ -6,7 +6,7 @@ node_js:
     - CC_TEST_REPORTER_ID=process.env.CC_TEST_REPORTER_ID
 addons:
     code_climate:
-        repo_token: dc7796c48037deafdff1f480e460c34639bf9de4
+        repo_token: process.env.CODECLIMATE_REPO_TOKEN
 install: npm install
 
 before_script:

@@ -6,16 +6,15 @@ const validateInput = inputValidator;
 
 class ParcelController {
   static deleteParcel(req, res) {
-    const parcel = parcels.find(x => x.orderId === parseInt(req.params.id, 10));
+    const parcel = parcels.find(element => element.orderId === parseInt(req.params.id, 10));
     if (!parcel) {
-      res.status(404).json({
+      return res.status(404).json({
         error: 'The Parcel with the given id was not found.'
       });
-      return;
     }
     const index = parcels.indexOf(parcel);
     parcels.splice(index, 1);
-    res.status(200).json({
+    return res.status(200).json({
       message: 'Parcel Delivery Order Successfully Deleted',
       data: parcel
     });
@@ -25,7 +24,7 @@ class ParcelController {
     const { error } = validateInput(req.body);
     if (error) {
       res.status(400).json({
-        error: error.details[0].message,
+        error: error.details,
         message: 'Bad Request'
       });
       return;
