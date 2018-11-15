@@ -1,6 +1,6 @@
-import parcels from '../modelsV1/parcles';
-import users from '../modelsV1/users';
-import inputValidator from '../validatorsV1/inputValidator';
+import parcels from '../models/parcles';
+import users from '../models/users';
+import inputValidator from '../validators/inputValidator';
 
 const validateInput = inputValidator;
 
@@ -38,7 +38,7 @@ class ParcelController {
       return;
     }
     const parcel = {
-      orderId: parceldata.length + 1,
+      orderId: parceldata[parceldata.length - 1].orderId + 1,
       userId: owner.userId,
       description: req.body.description,
       weight: req.body.weight,

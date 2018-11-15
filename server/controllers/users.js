@@ -1,6 +1,6 @@
-import parcels from '../modelsV1/parcles';
-import users from '../modelsV1/users';
-import userValidator from '../validatorsV1/userValidator';
+import parcels from '../models/parcles';
+import users from '../models/users';
+import userValidator from '../validators/userValidator';
 
 const validateInput = userValidator;
 
