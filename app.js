@@ -1,7 +1,7 @@
 import express from 'express';
 import morganLogger from 'morgan';
 import { config } from 'dotenv';
-import apiVersion1 from './server/apiVersions/apiVersion1';
+import apiVersion1 from './server/apiVersions/apiVersions';
 
 config();
 
@@ -15,6 +15,7 @@ app.use(morganLogger('combined'));
 
 app.get('/', (req, res) => {
   res.status(200).json({
+    success: true,
     message: 'Welcome to SendIT courier service'
   });
 });
@@ -28,6 +29,7 @@ app.use('/api/v1', apiVersion1);
 
 app.use((req, res) => {
   res.status(404).json({
+    success: false,
     message: 'Resource Not Found'
   });
 });

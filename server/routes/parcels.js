@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import ParcelController from '../controllers/parcels';
+import ParcelController from '../controllers/ParcelController';
+
 
 const router = Router();
 

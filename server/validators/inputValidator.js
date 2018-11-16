@@ -6,7 +6,7 @@ const validateInput = (input) => {
     description: Joi.string().min(3).required(),
     weight: Joi.string().required(),
     destination: Joi.string().required()
-  };
+ };
   return Joi.validate(input, schema);
 };
 

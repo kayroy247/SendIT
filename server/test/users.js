@@ -85,7 +85,7 @@ describe('Delete /api/v1/users/2', () => {
   });
 });
 
-describe('POST /api/v1/users/4', () => {
+describe('DELETE /api/v1/users/4', () => {
   it('Should delete a user by id', (done) => {
     httpRequest
       .delete('/api/v1/users/4')
