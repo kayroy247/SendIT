@@ -63,13 +63,11 @@ describe('GET /api/v1/parcels/1', () => {
 });
 
 describe('PUT /api/v1/parcels/1/cancel', () => {
-  it('Should return Bad request when req.body is empty', (done) => {
+  it('Should return error message is empty', (done) => {
     httpRequest
       .put('/api/v1/parcels/1/cancel')
       .end((err, res) => {
         expect(res).to.have.status(400);
-        expect(res.body).to.have.property('message')
-          .to.be.equal('Bad Request');
         expect(res.body).to.have.property('error');
         expect(res.body).to.be.an('object');
       });
@@ -90,9 +88,7 @@ describe('PUT /api/v1/parcels/1/cancel', () => {
       .send(data)
       .end((err, res) => {
         expect(res).to.have.status(404);
-        expect(res.body).to.have.property('error')
-          .to.be.equal('User Not Found');
-        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('error');
       });
     done();
   });
@@ -134,7 +130,7 @@ describe('PUT /api/v1/parcels/1/cancel', () => {
       .put('/api/v1/parcels/1/cancel')
       .send(data)
       .end((err, res) => {
-        expect(res).to.have.status(401);
+        expect(res).to.have.status(403);
         expect(res.body).to.have.property('error')
           .to.be.equal('Unauthorized Action, Not Completed');
         expect(res.body).to.be.an('object');
@@ -143,31 +139,11 @@ describe('PUT /api/v1/parcels/1/cancel', () => {
   });
 });
 
-describe('PUT /api/v1/parcels/1/cancel', () => {
-  it('Should should return Unauthorized when the user is not the owner of the parcel', (done) => {
-    const data = {
-      email: 'johnmoses@gmail.com',
-      description: 'documents',
-      weight: '20kg',
-      destination: 'London'
-    };
-    httpRequest
-      .put('/api/v1/parcels/1/cancel')
-      .send(data)
-      .end((err, res) => {
-        expect(res).to.have.status(401);
-        expect(res.body).to.have.property('error')
-          .to.be.equal('Unauthorized Action, Not Completed');
-        expect(res.body).to.be.an('object');
-      });
-    done();
-  });
-});
 
 describe('POST /api/v1/parcels', () => {
   it('Should create a new parcel delivery order', (done) => {
     const data = {
-      email: 'johnmoses@gmail.com',
+      email: 'okunladekayode@gmail.com',
       description: 'House documents',
       weight: '11kg',
       destination: '34, brook st, London'
@@ -191,7 +167,7 @@ describe('POST /api/v1/parcels', () => {
 describe('PUT /api/v1/parcels/1', () => {
   it('Should change the destination of a parcel delivery order', (done) => {
     const data = {
-      email: 'okunladekayode@gmail.com',
+      email: 'johnmoses@gmail.com',
       description: 'House documents',
       weight: '11kg',
       destination: '34, brook st, London'

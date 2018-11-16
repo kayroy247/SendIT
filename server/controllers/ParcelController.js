@@ -1,20 +1,23 @@
-import parcels from '../modelsV1/parcles';
-import users from '../modelsV1/users';
-import inputValidator from '../validatorsV1/inputValidator';
+import parcels from '../models/parcels';
+import users from '../models/users';
+import inputValidator from '../validators/inputValidator';
 
 const validateInput = inputValidator;
 
 class ParcelController {
   static deleteParcel(req, res) {
-    const parcel = parcels.find(element => element.orderId === parseInt(req.params.id, 10));
+    const { id } = req.params;
+    const parcel = parcels.find(element => element.orderId === parseInt(id, 10));
     if (!parcel) {
       return res.status(404).json({
+        success: false,
         error: 'The Parcel with the given id was not found.'
       });
     }
     const index = parcels.indexOf(parcel);
     parcels.splice(index, 1);
     return res.status(200).json({
+      success: true,
       message: 'Parcel Delivery Order Successfully Deleted',
       data: parcel
     });
@@ -23,22 +26,22 @@ class ParcelController {
   static createParcel(req, res) {
     const { error } = validateInput(req.body);
     if (error) {
-      res.status(400).json({
-        error: error.details,
-        message: 'Bad Request'
+      return res.status(400).json({
+        success: false,
+        error: error.details
       });
-      return;
     }
     const parceldata = parcels;
-    const owner = users.find(c => c.email === req.body.email);
+    const { email } = req.body;
+    const owner = users.find(element => element.email === email);
     if (!owner) {
-      res.status(404).json({
+      return res.status(404).json({
+        success: true,
         error: 'User Not Found'
       });
-      return;
     }
     const parcel = {
-      orderId: parceldata.length + 1,
+      orderId: parceldata[parceldata.length - 1].orderId + 1,
       userId: owner.userId,
       description: req.body.description,
       weight: req.body.weight,
@@ -47,90 +50,97 @@ class ParcelController {
       status: 'new'
     };
     parcels.push(parcel);
-    res.status(201).json({
+    return res.status(201).json({
+      success: true,
       message: 'Parcel delivery order successfully created',
       data: parcel
     });
   }
 
   static cancelParcel(req, res) {
-    const parcel = parcels.find(x => x.orderId === parseInt(req.params.id, 10));
+    const { id } = req.params;
+    const parcel = parcels.find(element => element.orderId === parseInt(id, 10));
     if (!parcel) {
-      res.status(404).json({
+      return res.status(404).json({
+        success: false,
         error: 'The Parcel with the given id was not found.'
       });
-      return;
     }
     const { error } = validateInput(req.body);
     if (error) {
-      res.status(400).json({
-        error: error.details[0].message,
-        message: 'Bad Request'
+      return res.status(400).json({
+        success: false,
+        error: error.details[0].message
       });
-      return;
     }
-    const user = users.find(c => c.email === req.body.email);
+    const { email } = req.body;
+    const user = users.find(c => c.email === email);
     if (!user) {
-      res.status(404).json({
+      return res.status(404).json({
+        success: false,
         error: 'User Not Found'
       });
-      return;
     }
     if (!(parcel.userId === user.userId)) {
-      res.status(401).json({
+      return res.status(403).json({
+        success: false,
         error: 'Unauthorized Action, Not Completed'
       });
-      return;
     }
     parcel.status = 'cancelled';
-    res.status(200).json({
+    return res.status(200).json({
+      success: true,
       message: 'Parcel Delivery Order Successfully Cancelled',
       data: parcel
     });
   }
 
   static updateParcel(req, res) {
-    const parcel = parcels.find(x => x.orderId === parseInt(req.params.id, 10));
+    const { id } = req.params;
+    const parcel = parcels.find(element => element.orderId === parseInt(id, 10));
     if (!parcel) {
-      res.status(404).json({
+      return res.status(404).json({
+        success: false,
         error: 'The Parcel with the given id was not found.'
       });
-      return;
     }
     const { error } = validateInput(req.body);
     if (error) {
-      res.status(400).json({
-        error: error.details[0].message,
-        message: 'Bad Request'
+      return res.status(400).json({
+        success: false,
+        error: error.details[0].message
       });
-      return;
     }
     parcel.destination = req.body.destination;
     parcel.weight = req.body.weight;
-    res.status(200).json({
+    return res.status(200).json({
+      success: true,
       message: 'Parcel Delivery Order Successfully Updated',
       data: parcel
     });
   }
 
   static getParcelById(req, res) {
-    const parcel = parcels.find(x => x.orderId === parseInt(req.params.id, 10));
+    const { id } = req.params;
+    const parcel = parcels.find(element => element.orderId === parseInt(id, 10));
     if (!parcel) {
-      res.status(404).json({
+      return res.status(404).json({
+        success: false,
         error: 'The Parcel with the given id was not found.'
       });
-      return;
     }
-    res.status(200).json({
-      message: 'Parcel by ID',
+    return res.status(200).json({
+      success: true,
+      message: 'Parcel successfully fetched by ID',
       data: parcel
     });
   }
 
   static getAllParcels(req, res) {
     const allParcels = parcels;
-    res.status(200).json({
-      message: 'These are parcel delivery orders',
+    return res.status(200).json({
+      success: true,
+      message: 'All parcel delivery orders successfully fetched',
       data: allParcels
     });
   }

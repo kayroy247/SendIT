@@ -1,11 +1,12 @@
 import { Router } from 'express';
-import parcels from '../routesV1/parcels';
-import users from '../routesV1/users';
+import parcels from '../routes/parcels';
+import users from '../routes/users';
 
 const apiVersion1 = Router();
 
 apiVersion1.get('/', (req, res) => {
   res.status(200).json({
+    success: true,
     message: 'Welcome to SendIT API VERSION 1'
   });
 });
