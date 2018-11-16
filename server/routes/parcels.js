@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import ParcelController from '../controllers/ParcelController';
 
-
 const router = Router();
 
 // GET all parcel delivery orders

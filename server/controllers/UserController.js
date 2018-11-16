@@ -42,7 +42,7 @@ class UserController {
       });
     }
     const user = {
-      userId: allUsers.length + 1,
+      userId: allUsers[allUsers.length - 1].userId + 1,
       email: req.body.email,
       address: req.body.address
     };
