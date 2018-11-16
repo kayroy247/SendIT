@@ -25,13 +25,6 @@ class UserController {
   }
 
   static createUser(req, res) {
-    const { error } = validateInput(req.body);
-    if (error) {
-      return res.status(400).json({
-        success: false,
-        error: error.details[0].message
-      });
-    }
     const allUsers = users;
     const { email } = req.body;
     const newUser = users.find(c => c.email === email);
@@ -39,6 +32,13 @@ class UserController {
       return res.status(404).json({
         success: false,
         error: 'User Already Exist'
+      });
+    }
+    const { error } = validateInput(req.body);
+    if (error) {
+      return res.status(400).json({
+        success: false,
+        error: error.details[0].message
       });
     }
     const user = {
