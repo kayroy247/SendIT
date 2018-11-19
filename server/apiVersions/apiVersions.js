@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import parcels from '../routes/parcels';
 import users from '../routes/users';
+import auth from '../routes/auth';
 
 const apiVersion1 = Router();
 
@@ -13,5 +14,6 @@ apiVersion1.get('/', (req, res) => {
 
 apiVersion1.use('/parcels', parcels);
 apiVersion1.use('/users', users);
+apiVersion1.use('/autho', auth)
 
 export default apiVersion1;
