@@ -1,0 +1,67 @@
+{
+  "name": "sendit",
+  "version": "1.0.0",
+  "description": "SendIT is a courier service that helps users deliver parcels to different destinations",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node app.js",
+    "test": "cross-env NODE_ENV=test nyc mocha ./server/test --timeout 10s --exit"
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kayroy247/SendIT.git"
+  },
+  "keywords": [
+    "SendIT",
+    "courier",
+    "application",
+    "Restful",
+    "API"
+  ],
+  "author": "Okunlade Kayode",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kayroy247/SendIT/issues"
+  },
+  "homepage": "https://github.com/kayroy247/SendIT#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/register": "^7.0.0",
+    "babel-plugin-istanbul": "^5.1.0",
+    "coveralls": "^3.0.2",
+    "cross-env": "^5.2.0",
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "istanbul": "^0.4.5",
+    "mocha-lcov-reporter": "^1.3.0",
+    "nyc": "^13.1.0"
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "joi": "^13.3.0",
+    "mocha": "^5.2.0",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.6"
+  },
+  "engines": {
+    "node": "10.13.0"
+  },
+  "nyc": {
+    "require": [
+      "@babel/register"
+    ],
+    "reporter": [
+      "text","html"
+    ],
+    "sourceMap": false,
+    "instrument": false
+  }
+}

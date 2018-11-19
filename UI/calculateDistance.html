@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Affordable Courier Services">
+  <title>SendIT | Welcome</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div id="brandname">
+        <h1>SendIT</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li class=><a href="userDashboard.html">Order History</a></li>
+          <li class="current"><a href="../index.html">Logout</a></li>
+          <i class="fa fa-bars"></i>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section id="register">
+    <div class="formregister">
+        <form class="signup">
+            <h2 id="signupheader">Calculate Distance and Time</h2>
+            <div>
+                <label>Origin:</label><br>
+                <input type="text" placeholder="From where?">
+            </div>
+            <div>
+                <label>Destination:</label><br>
+                <input type="text" placeholder="Destination">
+            </div>
+            <button class="button_1" onclick="location.href='userDashboard.html'" type="button">Get Distance and Time</button>
+
+            <hr><br><br>
+            <div>
+                <label>Distance:</label><br>
+                <output type="text"></output>
+            </div><br><br>
+            <div>
+                <label>Time:</label><br>
+                <output type="text"></output>
+            </div>
+            
+        </form>
+    </div>
+  </section>
+  <footer>
+    <div class="container">
+    <p>SendIT, Copyright &copy; 2018. <a href="#">About Us</a></p>
+  </div>
+  </footer>
+</body>
+</html>
