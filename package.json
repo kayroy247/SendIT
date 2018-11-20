@@ -6,7 +6,6 @@
   "scripts": {
     "start": "nodemon --exec babel-node app.js",
     "test": "cross-env NODE_ENV=test nyc mocha ./server/test --timeout 10s --exit"
-    
   },
   "repository": {
     "type": "git",
@@ -42,6 +41,7 @@
     "nyc": "^13.1.0"
   },
   "dependencies": {
+    "bcrypt": "^3.0.2",
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
     "dotenv": "^6.1.0",
@@ -49,7 +49,8 @@
     "joi": "^13.3.0",
     "mocha": "^5.2.0",
     "morgan": "^1.9.1",
-    "nodemon": "^1.18.6"
+    "nodemon": "^1.18.6",
+    "pg": "^7.6.1"
   },
   "engines": {
     "node": "10.13.0"
@@ -59,7 +60,8 @@
       "@babel/register"
     ],
     "reporter": [
-      "text","html"
+      "text",
+      "html"
     ],
     "sourceMap": false,
     "instrument": false
