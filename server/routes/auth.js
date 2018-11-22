@@ -1,12 +1,11 @@
 import { Router } from 'express';
-
-import authController from '../controllers/authController';
+import authController from '../controllers/authControllers';
+import { validateUserInput, validateLogin } from '../middleware/validateUserInput';
 
 const router = Router();
 
-// GET all parcel delivery orders
 
-router.post('/signup', UserController.createUser);
-router.delete('/login', UserController.deleteUser);
+router.post('/signup', validateUserInput, authController.signUp);
+router.post('/login', validateLogin, authController.login);
 
 export default router;
