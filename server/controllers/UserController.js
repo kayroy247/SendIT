@@ -1,6 +1,7 @@
 import pool from '../databaseConnection/databaseConnection';
 import Password from '../helpers/cryptPassword';
 
+
 class UserController {
   static deleteUser(req, res) {
     const id = parseInt(req.params.id, 10);
@@ -10,11 +11,11 @@ class UserController {
           return res.status(500).json({
             status: 500,
             success: false,
-            error: 'Unable to delete user Account'
+            error: 'Failed to delete user Account'
           });
         }
-        return res.status(200).json({
-          status: 200,
+        return res.status(201).json({
+          status: 201,
           message: 'User Account successfully deleted',
           data: results.rows[0]
         });
@@ -31,19 +32,19 @@ class UserController {
     } = req.body;
 
     const hashedPassword = Password.hashPassword(password);
-    pool.query('INSERT INTO users (firstname, lastname, email, username, password) VALUES ($1, $2, $3, $4, $5)',
+    pool.query('INSERT INTO users (firstname, lastname, email, username, password) VALUES ($1, $2, $3, $4, $5) RETURNING id, firstname, lastname, email;',
       [firstname, lastname, email, username, hashedPassword], (error, results) => {
         if (error) {
           return res.status(500).json({
             status: 500,
             success: false,
-            error: 'Internal server error'
+            error: 'Failed to create account'
           });
         } if (results.rowCount) {
           return res.status(201).json({
             status: 201,
             message: 'User Account successfully created',
-            data: results.rows[0]
+            data: results.rows
           });
         }
         return res.status(409).json({
@@ -61,20 +62,20 @@ class UserController {
       lastname
     } = req.body;
     pool.query(
-      'UPDATE users SET name = $1, email = $2 WHERE id = $3',
+      'UPDATE users SET firstname= $1, lastname = $2 WHERE id = $3 RETURNING id,firstname,lastname;',
       [firstname, lastname, id],
       (error, results) => {
         if (error) {
           return res.status(500).json({
             status: 500,
             success: false,
-            error: 'Internal server error'
+            error: 'Failed to update user information'
           });
         }
         return res.status(200).json({
-          status: 204,
+          status: 200,
           message: 'User information Updated successfully',
-          data: results.rows[0]
+          data: results.rows
         });
       }
     );
@@ -88,7 +89,7 @@ class UserController {
         return res.status(500).json({
           status: 500,
           success: false,
-          error: 'Internal server error'
+          error: 'Failed to get User parcels'
         });
       }
       if (results.rowCount) {
@@ -102,14 +103,14 @@ class UserController {
       return res.status(404).json({
         status: 404,
         success: false,
-        error: 'The parcels by the user was not found'
+        error: 'The user has no parcel delivery order'
       });
     });
   }
 
   static getUserById(req, res) {
     const id = parseInt(req.params.id, 10);
-    const query = `SELECT * FROM users WHERE id = ${id}`;
+    const query = `SELECT id, firstname, lastname, email, username  FROM users WHERE id = ${id}`;
     pool.query(query, (error, results) => {
       if (error) {
         return res.status(500).json({
@@ -135,12 +136,12 @@ class UserController {
   }
 
   static getAllUsers(req, res) {
-    pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
+    pool.query('SELECT id, firstname, lastname, email, username, isadmin  FROM users ORDER BY id ASC', (error, results) => {
       if (error) {
         return res.status(500).json({
           status: 500,
           success: false,
-          error: 'Get All Users Failed'
+          error: 'Failed to Get all users'
         });
       }
       return res.status(200).json({

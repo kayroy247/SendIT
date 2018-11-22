@@ -1,147 +1,198 @@
-import parcels from '../models/parcels';
-import users from '../models/users';
-import inputValidator from '../validators/inputValidator';
-
-const validateInput = inputValidator;
+import pool from '../databaseConnection/databaseConnection';
 
 class ParcelController {
   static deleteParcel(req, res) {
-    const { id } = req.params;
-    const parcel = parcels.find(element => element.orderId === parseInt(id, 10));
-    if (!parcel) {
-      return res.status(404).json({
-        success: false,
-        error: 'The Parcel with the given id was not found.'
+    const id = parseInt(req.params.id, 10);
+    pool.query('DELETE FROM parcels WHERE id = $1', [id],
+      (error, results) => {
+        if (error) {
+          return res.status(500).json({
+            status: 500,
+            success: false,
+            error: 'Unable to delete parcel delivery order'
+          });
+        }
+        return res.status(200).json({
+          status: 200,
+          message: 'Parcel delivery order successfully deleted',
+          data: results.rows[0]
+        });
       });
-    }
-    const index = parcels.indexOf(parcel);
-    parcels.splice(index, 1);
-    return res.status(200).json({
-      success: true,
-      message: 'Parcel Delivery Order Successfully Deleted',
-      data: parcel
-    });
   }
 
   static createParcel(req, res) {
-    const { error } = validateInput(req.body);
-    if (error) {
-      return res.status(400).json({
-        success: false,
-        error: error.details
+    const {
+      userid,
+      weight,
+      weightmetric,
+      sentOn,
+      deliveredOn,
+      pickupLocation,
+      destination
+    } = req.body;
+    pool.query('INSERT INTO parcels (userid, weight, weightmetric, senton, deliveredon, pickuplocation, destination) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;',
+      [userid, weight, weightmetric, sentOn,
+        deliveredOn, pickupLocation, destination], (err, results) => {
+        if (err) {
+          return res.status(500).json({
+            status: 500,
+            success: false,
+            error: err
+          });
+        } if (results.rowCount) {
+          return res.status(201).json({
+            status: 201,
+            message: 'Parcel delivery Order successfully created',
+            data: results.rows[0]
+          });
+        }
+        return res.status(409).json({
+          status: 409,
+          success: false,
+          error: 'Unable to create Parcel delivery order'
+        });
       });
-    }
-    const parceldata = parcels;
-    const { email } = req.body;
-    const owner = users.find(element => element.email === email);
-    if (!owner) {
-      return res.status(404).json({
-        success: true,
-        error: 'User Not Found'
-      });
-    }
-    const parcel = {
-      orderId: parceldata[parceldata.length - 1].orderId + 1,
-      userId: owner.userId,
-      description: req.body.description,
-      weight: req.body.weight,
-      location: req.body.location,
-      destination: req.body.destination,
-      status: 'new'
-    };
-    parcels.push(parcel);
-    return res.status(201).json({
-      success: true,
-      message: 'Parcel delivery order successfully created',
-      data: parcel
-    });
   }
 
   static cancelParcel(req, res) {
-    const { id } = req.params;
-    const parcel = parcels.find(element => element.orderId === parseInt(id, 10));
-    if (!parcel) {
-      return res.status(404).json({
-        success: false,
-        error: 'The Parcel with the given id was not found.'
-      });
-    }
-    const { error } = validateInput(req.body);
-    if (error) {
-      return res.status(400).json({
-        success: false,
-        error: error.details[0].message
-      });
-    }
-    const { email } = req.body;
-    const user = users.find(c => c.email === email);
-    if (!user) {
-      return res.status(404).json({
-        success: false,
-        error: 'User Not Found'
-      });
-    }
-    if (!(parcel.userId === user.userId)) {
-      return res.status(403).json({
-        success: false,
-        error: 'Unauthorized Action, Not Completed'
-      });
-    }
-    parcel.status = 'cancelled';
-    return res.status(200).json({
-      success: true,
-      message: 'Parcel Delivery Order Successfully Cancelled',
-      data: parcel
-    });
+    const id = parseInt(req.params.id, 10);
+    pool.query(
+      'UPDATE parcels SET status = $1 WHERE id = $2 RETURNING *',
+      ['cancelled', id],
+      (error, results) => {
+        if (error) {
+          return res.status(500).json({
+            status: 500,
+            success: false,
+            error: 'Unable to update parcel delivery order'
+          });
+        }
+        return res.status(200).json({
+          status: 200,
+          message: 'parcel delivery order successfully cancelled',
+          data: results.rows
+        });
+      }
+    );
   }
 
   static updateParcel(req, res) {
-    const { id } = req.params;
-    const parcel = parcels.find(element => element.orderId === parseInt(id, 10));
-    if (!parcel) {
-      return res.status(404).json({
-        success: false,
-        error: 'The Parcel with the given id was not found.'
-      });
-    }
-    const { error } = validateInput(req.body);
-    if (error) {
-      return res.status(400).json({
-        success: false,
-        error: error.details[0].message
-      });
-    }
-    parcel.destination = req.body.destination;
-    parcel.weight = req.body.weight;
-    return res.status(200).json({
-      success: true,
-      message: 'Parcel Delivery Order Successfully Updated',
-      data: parcel
-    });
+    const id = parseInt(req.params.id, 10);
+    const {
+      destination
+    } = req.body;
+    pool.query(
+      'UPDATE parcels SET destination = $1 WHERE id = $2 RETURNING *',
+      [destination, id],
+      (error, results) => {
+        if (error) {
+          return res.status(500).json({
+            status: 500,
+            success: false,
+            error: 'Unable to update parcel delivery order'
+          });
+        }
+        return res.status(200).json({
+          status: 200,
+          message: 'parcel delivery order Updated successfully',
+          data: results.rows
+        });
+      }
+    );
+  }
+
+  static updateStatus(req, res) {
+    const id = parseInt(req.params.id, 10);
+    const {
+      status
+    } = req.body;
+    pool.query(
+      'UPDATE parcels SET status = $1 WHERE id = $2 RETURNING *',
+      [status, id],
+      (error, results) => {
+        if (error) {
+          return res.status(500).json({
+            status: 500,
+            success: false,
+            error: 'Failed to update status of parcel delivery order'
+          });
+        }
+        return res.status(200).json({
+          status: 200,
+          message: 'parcel delivery order Updated successfully',
+          data: results.rows
+        });
+      }
+    );
+  }
+
+  static updateLocation(req, res) {
+    const id = parseInt(req.params.id, 10);
+    const {
+      presentLocation
+    } = req.body;
+    pool.query(
+      'UPDATE parcels SET currentlocation = $1 WHERE id = $2 RETURNING *',
+      [presentLocation, id],
+      (error, results) => {
+        if (error) {
+          return res.status(500).json({
+            status: 500,
+            success: false,
+            error: 'Failed to update present Location of parcel delivery order'
+          });
+        }
+        return res.status(200).json({
+          status: 200,
+          message: 'Present location of parcel delivery order Updated successfully',
+          data: results.rows
+        });
+      }
+    );
   }
 
   static getParcelById(req, res) {
-    const { id } = req.params;
-    const parcel = parcels.find(element => element.orderId === parseInt(id, 10));
-    if (!parcel) {
+    const id = parseInt(req.params.id, 10);
+    const query = `SELECT * FROM parcels WHERE id = ${id}`;
+    pool.query(query, (error, results) => {
+      if (error) {
+        return res.status(500).json({
+          status: 500,
+          success: false,
+          error: 'Unable to get parcel by id'
+        });
+      }
+      if (results.rowCount) {
+        return res.status(200).json({
+          status: 200,
+          success: true,
+          message: 'Successfully Fetched parcel by id',
+          data: results.rows
+        });
+      }
       return res.status(404).json({
+        status: 404,
         success: false,
-        error: 'The Parcel with the given id was not found.'
+        error: 'The parcel with the given id was not found'
       });
-    }
-    return res.status(200).json({
-      success: true,
-      message: 'Parcel successfully fetched by ID',
-      data: parcel
     });
   }
 
   static getAllParcels(req, res) {
-    const allParcels = parcels;
-    return res.status(200).json({
-      success: true,
-      message: 'All parcel delivery orders successfully fetched',
-      data: allParcels
+    pool.query('SELECT * FROM parcels ORDER BY id ASC', (error, results) => {
+      if (error) {
+        return res.status(500).json({
+          status: 500,
+          success: false,
+          error: 'Get All Parcels Failed'
+        });
+      }
+      return res.status(200).json({
+        status: 200,
+        success: true,
+        message: 'Successfully Fetched All Parcel Delivery orders',
+        data: results.rows
+      });
     });
   }
 }

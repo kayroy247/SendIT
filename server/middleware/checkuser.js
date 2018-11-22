@@ -1,17 +1,17 @@
 import pool from '../databaseConnection/databaseConnection';
 
-const checkuser = (req, res, next) => {
+const checkUser = (req, res, next) => {
   const id = parseInt(req.params.id, 10);
-  const queryusers = `SELECT * FROM users WHERE id = ${id}`;
-  pool.query(queryusers, (error, results) => {
+  const queryUsers = `SELECT * FROM users WHERE id = ${id}`;
+  pool.query(queryUsers, (error, results) => {
     if (error) {
       return res.status(500).json({
         status: 500,
         success: false,
-        error: 'Unable to get user by id'
+        error: 'Failed get user by id'
       });
     }
-    if (!results.rowCount) {
+    if (!results.rows[0]) {
       return res.status(404).json({
         status: 404,
         success: false,
@@ -22,4 +22,4 @@ const checkuser = (req, res, next) => {
   });
 };
 
-export default checkuser;
+export default checkUser;
