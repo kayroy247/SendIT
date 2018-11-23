@@ -10,6 +10,10 @@ describe('GET /api/v1/users', () => {
   it('Should fetch all users', (done) => {
     httpRequest
       .get('/api/v1/users')
+      .send({
+        email: 'okunladekayode@gmail.com',
+        password: 'password'
+      })
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body).to.have.property('message')

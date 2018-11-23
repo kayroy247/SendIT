@@ -30,27 +30,21 @@ class UserController {
       username,
       password
     } = req.body;
-
     const hashedPassword = Password.hashPassword(password);
-    pool.query('INSERT INTO users (firstname, lastname, email, username, password) VALUES ($1, $2, $3, $4, $5) RETURNING id, firstname, lastname, email;',
-      [firstname, lastname, email, username, hashedPassword], (error, results) => {
+    pool.query('INSERT INTO users (firstname, lastname, email, username, password, isadmin) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id, firstname, lastname, email, isadmin',
+      [firstname, lastname, email, username, hashedPassword, true], (error, results) => {
         if (error) {
-          return res.status(500).json({
-            status: 500,
+          return res.status(409).json({
+            status: 409,
             success: false,
-            error: 'Failed to create account'
-          });
-        } if (results.rowCount) {
-          return res.status(201).json({
-            status: 201,
-            message: 'User Account successfully created',
-            data: results.rows
+            error: 'Email Already exist'
           });
         }
-        return res.status(409).json({
-          status: 409,
-          success: false,
-          error: 'Unable to create User account'
+        return res.status(201).json({
+          status: 201,
+          success: true,
+          message: 'User Account successfully created',
+          data: results.rows
         });
       });
   }

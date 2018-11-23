@@ -23,6 +23,8 @@ router.put('/:id/',
   validateUserInput,
   UserController.updateUser);
 
+router.post('/admin', UserController.createUser);
+
 router.delete('/:id',
   authenticateAdmin,
   UserController.deleteUser);
