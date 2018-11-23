@@ -6,11 +6,11 @@ services:
  - postgresql
 
 install:
- - npm install
+ - npm ci
 
 cache:
   directories:
-  - "node_modules"
+  - "$HOME/.npm"
 
 before_script:
  - psql -c 'create database travis_ci_test;' -u postgres
