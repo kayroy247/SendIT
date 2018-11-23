@@ -17,13 +17,13 @@ class AuthController {
       password
     } = req.body;
     const hashedPassword = Password.hashPassword(password);
-    pool.query('INSERT INTO users (firstname, lastname, email, username, password) VALUES ($1, $2, $3, $4, $5) RETURNING id, firstname, lastname, email, isadmin',
-      [firstname, lastname, email, username, hashedPassword], (error, results) => {
+    pool.query('INSERT INTO users (firstname, lastname, email, username, password, isadmin) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id, firstname, lastname, email, isadmin;',
+      [firstname, lastname, email, username, hashedPassword, false], (error, results) => {
         if (error) {
           return res.status(409).json({
-            status: 409,
+            status: 500,
             success: false,
-            error: 'Email Already exist'
+            error: 'Email Already Exist'
           });
         }
         return res.status(201).json({
