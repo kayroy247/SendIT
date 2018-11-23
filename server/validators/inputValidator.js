@@ -9,6 +9,7 @@ const validateInput = (input, entry) => {
     destination: Joi.string().trim().min(5).max(90)
       .required(),
     token: Joi.raw(),
+    status: Joi.raw(),
     senton: Joi.string().trim().min(5),
     pickuplocation: Joi.string().trim().min(5).required()
   };
