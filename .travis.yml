@@ -6,7 +6,7 @@ services:
  - postgresql
 
 install:
- - npm ci
+ - npm install
 
 cache:
   directories:
