@@ -20,4 +20,4 @@ before_script:
 
 after_script:
  - nyc report --reporter=text-lcov | coveralls
- - ./cc-test-reporter after-build --coverage-endpoint https://api.codeclimate.com/v1/test_reports
+ - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
