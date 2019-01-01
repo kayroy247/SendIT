@@ -1,13 +1,13 @@
 import bcrypt from 'bcrypt';
 
 class Password {
-  static async hashPassword(password) {
-    const hash = await bcrypt.hashSync(password, 10);
+  static hashPassword(password) {
+    const hash = bcrypt.hashSync(password, 10);
     return hash;
   }
 
-  static async comparePassword(password, hashedPassword) {
-    const result = await bcrypt.compareSync(password, hashedPassword);
+  static comparePassword(password, hashedPassword) {
+    const result = bcrypt.compareSync(password, hashedPassword);
     return result;
   }
 }
