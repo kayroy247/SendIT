@@ -6,11 +6,25 @@ import app from '../../app';
 use(chaiHttp);
 const httpRequest = request(app).keepOpen();
 
+describe('GET /', () => {
+  it('Should return the message of the base url', (done) => {
+    httpRequest
+      .get('/')
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.have.property('message')
+          .to.be.equal('Welcome to SendIT courier service');
+        expect(res.body).not.to.be.have.property('data');
+      });
+    done();
+  });
+});
+
+/*
 describe('GET /api/v1/users', () => {
   it('Should fetch all users', (done) => {
     httpRequest
       .get('/api/v1/users')
-      .set({ Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZGJFbWFpbCI6eyJpZCI6MSwiZmlyc3RuYW1lIjoiS2F5b2RlIiwibGFzdG5hbWUiOiJva3VubGFkZSIsImVtYWlsIjoib2t1bmxhZGVrYXlvZGVAZ21haWwuY29tIiwidXNlcm5hbWUiOiJrYXlrYXkiLCJwYXNzd29yZCI6IiQyYiQxMCRwbFQvbklubW1CcVMuNkZ1VjA0Q29lbi9uVUI4d3BWLkhIT2JBb2MyVi5oei5WaWNaZXMxNiIsInJlZ2lzdGVyZWQiOiIyMDE4LTExLTIyVDEyOjI4OjQzLjQyNVoiLCJpc2FkbWluIjp0cnVlfSwiaXNhZG1pbiI6dHJ1ZSwiaWF0IjoxNTQyOTA2NjkyLCJleHAiOjE1NDI5OTMwOTJ9.wb4Xg1XyzZzJ0YNjwF3JyD-6_09WRki61gvG40WnTvw' })
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body).to.have.property('message')
@@ -119,3 +133,4 @@ describe('PUT /api/v1/users/4', () => {
     done();
   });
 });
+*/
