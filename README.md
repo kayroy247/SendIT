@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/github/kayroy247/SendIT/badge.svg?branch=feature)](https://coveralls.io/github/kayroy247/SendIT?branch=feature) [![Build Status](https://travis-ci.org/kayroy247/SendIT.svg?branch=ch-TravisCi-Setup-161691793)](https://travis-ci.org/kayroy247/SendIT) [![Maintainability](https://api.codeclimate.com/v1/badges/c90808a7ebcd9f340f8c/maintainability)](https://codeclimate.com/github/kayroy247/SendIT/maintainability) 
+[![Coverage Status](https://coveralls.io/repos/github/kayroy247/SendIT/badge.svg?branch=develop)](https://coveralls.io/github/kayroy247/SendIT?branch=develop) [![Build Status](https://travis-ci.org/kayroy247/SendIT.svg?branch=ch-TravisCi-Setup-161691793)](https://travis-ci.org/kayroy247/SendIT) [![Maintainability](https://api.codeclimate.com/v1/badges/c90808a7ebcd9f340f8c/maintainability)](https://codeclimate.com/github/kayroy247/SendIT/maintainability) 
 
 # SendIT
 SendIT is a courier service that helps users deliver parcels to different destinations
