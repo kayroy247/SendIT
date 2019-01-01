@@ -10,15 +10,14 @@ install:
 
 cache:
   directories:
-  - "cache"
+   - "cache"
 
 before_script:
  - psql -c 'create database travis_ci_test;' -U postgres
  - curl -O https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-
-- chmod +x ./cc-test-reporter
-- ./cc-test-reporter before-build
+ - chmod +x ./cc-test-reporter
+ - ./cc-test-reporter before-build
 
 after_script:
-  - nyc report --reporter=text-lcov | coveralls
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+ - nyc report --reporter=text-lcov | coveralls
+ - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
