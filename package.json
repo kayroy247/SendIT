@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon --exec babel-node app.js",
-    "test": "cross-env NODE_ENV=test nyc mocha ./server/test --timeout 10s --exit"
+    "test": "nyc mocha ./server/test --timeout 10s --exit"
   },
   "repository": {
     "type": "git",
