@@ -65,7 +65,8 @@
     "reporter": [
       "text",
       "html",
-      "lcov"
+      "lcov",
+      "lcovonly"
     ],
     "sourceMap": false,
     "instrument": false
