@@ -24,4 +24,4 @@ script:
 after_script:
  - nyc report --reporter=text-lcov | coveralls
  - ./cc-test-reporter after-build -t lcov --exit-code $TRAVIS_TEST_RESULT
- - codecov
+ - nyc report --reporter=text-lcov > coverage.lcov && codecov
