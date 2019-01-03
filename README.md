@@ -10,13 +10,19 @@ User dashboard can be found [here](https://kayroy247.github.io/SendIT/UI/userDas
 ### SendIT Restful API on heroku
 [SendIT API](https://sendit-1.herokuapp.com/)
 
-#### Required Features
-1. Users can create an account and log in.
-2. Users can create a parcel delivery order.
-3. Users can change the destination of a parcel delivery order.
-4. Users can cancel a parcel delivery order.
-5. Users can see the details of a delivery order.
-6. Admin can change the status and present location of a parcel delivery order.
+#### User Features
+- Create an account and login
+- Create a parcel delivery order
+- Change the destination of the user's parcel delivery order that is not delivered
+- Cancel a parcel delivery order
+- See all of the user's parcel delivery orders
+- See the details of user's single parcel delivery order
+
+### Admin Features
+- View all users
+- View all parcel delivery orders
+- Change the status of parcel delivery order(new, Intransit, delivered)
+- Change the present location of a parcel delivery order
 
 #### Optional Features 
 1. The application should display a Google Map with Markers showing the pickup location
@@ -27,7 +33,7 @@ User dashboard can be found [here](https://kayroy247.github.io/SendIT/UI/userDas
 4. The user gets real-time email notification when Admin changes the present location of
    their parcel.
 
-### How to install
+### How To Install This
 ```
 npm install
 

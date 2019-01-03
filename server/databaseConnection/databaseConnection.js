@@ -1,7 +1,11 @@
 import { Pool } from 'pg';
+import { config } from 'dotenv';
+
+config();
+const connectionUrl = process.env.DATABASE_URL;
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL || 'postgresql://postgres:practice@127.0.0.1:5432/sendit'
+  connectionString: connectionUrl
 });
 
 pool.on('connect', () => {
