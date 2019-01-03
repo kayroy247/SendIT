@@ -6,7 +6,7 @@ services:
  - postgresql
 
 install:
- - npm install -g codecov
+ - npm install
  
 cache:
   directories:
@@ -17,6 +17,9 @@ before_script:
  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
  - chmod +x ./cc-test-reporter
  - ./cc-test-reporter before-build
+
+script:
+ - npm install -g codecov
 
 after_script:
  - nyc report --reporter=text-lcov | coveralls
