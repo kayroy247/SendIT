@@ -20,35 +20,32 @@ const createUsersTable = `CREATE TABLE IF NOT EXISTS
     lastname VARCHAR(25) NOT NULL,
     email VARCHAR(30) UNIQUE NOT NULL,
     username VARCHAR UNIQUE NOT NULL,
-    password VARCHAR(100),
+    password VARCHAR(100) NOT NULL,
     registered TIMESTAMP DEFAULT NOW(),
-    isadmin Boolean DEFAULT false
+    isadmin Boolean DEFAULT false NOT NULL
 );`;
 
 const createParcelsTable = `CREATE TABLE IF NOT EXISTS
 
-  parcels(
+  parcels (
     id SERIAL PRIMARY KEY,
-    userid INTEGER REFERENCES users(id),
+    userid INTEGER REFERENCES users(id) NOT NULL,
     weight VARCHAR(25) NOT NULL,
     weightmetric VARCHAR(20) NOT NULL,
     sentOn TIMESTAMP default now(),
-    deliveredOn TIMESTAMP,
-    status  VARCHAR(10),
-    pickuplocation VARCHAR(50),
-    currentlocation VARCHAR(50),
-    destination VARCHAR(50)
+    deliveredOn TIMESTAMP NOT NULL,
+    status  VARCHAR(10) NOT NULL,
+    pickuplocation VARCHAR(50) NOT NULL,
+    currentlocation VARCHAR(50) NOT NULL,
+    destination VARCHAR(50) NOT NULL
 );`;
 
 
 const createAllTables = `${createUsersTable}${createParcelsTable}`;
 
-pool.query(createAllTables, (err) => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log('connected');
-  }
-});
+pool.query(createAllTables)
+  .catch((err) => {
+    console.log(err);
+  });
 
 export default pool;

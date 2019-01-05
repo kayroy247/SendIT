@@ -45,8 +45,8 @@ git clone https://github.com/kayroy247/SendIT.git
 6. Finally Run `npm start` to start the server. You now have a running copy of Sendit application
 
 ### Access Endpoints 
-7. Access the homepage on a browser through localhost:3000/api/v1
-8. All other endpoints and request methods below can be accessed with [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en)
+- Access the homepage on a browser through localhost:3000/api/v1
+- All other endpoints and request methods below can be accessed with [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en)
 
 ### How to test
 To run tests on the app run:
@@ -54,13 +54,11 @@ To run tests on the app run:
 npm test
 `
 ### Technology Used
-- Front End - HTML, CSS, JAVASCRIPT(ES6)
-- Backend - Nodejs/Expressjs
-- nodemailer
-- Joi Validator
-- babel 7
-
-### Test Modules
+#### Front End 
+- HTML, CSS, JAVASCRIPT(ES6)
+#### Backend 
+- Nodejs/Expressjs
+#### Test Modules
 - Mocha, Chai and Chaihttp
 ### Test Coverage Instrumentation and Report
 - [nyc](https://www.npmjs.com/package/nyc) 
@@ -72,6 +70,8 @@ Travis-ci.org
 - coveralls.io
 - codeclimate.com
 - codecov.io
+### Project Management
+[Pivotal Tracker](https://www.pivotaltracker.com/n/projects/2214262)
  
 ### Available endpoints
 HTTP METHOD | ENDPOINTS | FUNCTIONALITY
@@ -90,8 +90,17 @@ POST | /api/v1/users/   | *Create a new user*
 DELETE | /api/v1/users/:id  | *Delete a user by id*
 DELETE | /api/v1/parcels/:id  | *Delete a user by id*
 
+### API Reference
+localhost:3000/api/v1/docs
 ### Author
-This application is written by Okunlade Kayode. 
+Okunlade Kayode. :smiley: :thumbsup: :sparkles:
+
+### Credits
+- [Learn Node in 1 Hour](https://www.youtube.com/watch?v=TlB_eWDSMt4)
+- [javascript.info](javascript.info)
+- [Beginners Guide To Writting Readme](https://medium.com/@meakaakka/a-beginners-guide-to-writing-a-kickass-readme-7ac01da88ab3)
+### Acknowledgement
+My appreciation to the Learning Faciitator Assistants for their motivation and feedback.
 
 ### License
 This application is written under the MIT license. Please check the LICENSE.md file for details.
