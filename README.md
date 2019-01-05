@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/github/kayroy247/SendIT/badge.svg?branch=develop)](https://coveralls.io/github/kayroy247/SendIT?branch=develop) [![Build Status](https://travis-ci.org/kayroy247/SendIT.svg?branch=develop)](https://travis-ci.org/kayroy247/SendIT) [![Maintainability](https://api.codeclimate.com/v1/badges/c90808a7ebcd9f340f8c/maintainability)](https://codeclimate.com/github/kayroy247/SendIT/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/c90808a7ebcd9f340f8c/test_coverage)](https://codeclimate.com/github/kayroy247/SendIT/test_coverage) [![codecov](https://codecov.io/gh/kayroy247/SendIT/branch/develop/graph/badge.svg)](https://codecov.io/gh/kayroy247/SendIT) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Coverage Status](https://coveralls.io/repos/github/kayroy247/SendIT/badge.svg?branch=develop)](https://coveralls.io/github/kayroy247/SendIT?branch=develop) [![Build Status](https://travis-ci.org/kayroy247/SendIT.svg?branch=develop)](https://travis-ci.org/kayroy247/SendIT) [![Maintainability](https://api.codeclimate.com/v1/badges/c90808a7ebcd9f340f8c/maintainability)](https://codeclimate.com/github/kayroy247/SendIT/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/c90808a7ebcd9f340f8c/test_coverage)](https://codeclimate.com/github/kayroy247/SendIT/test_coverage) [![codecov](https://codecov.io/gh/kayroy247/SendIT/branch/develop/graph/badge.svg)](https://codecov.io/gh/kayroy247/SendIT) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 # SendIT
 SendIT is a courier service that helps users deliver parcels to different destinations
@@ -42,7 +42,7 @@ git clone https://github.com/kayroy247/SendIT.git
 4. Navigate to the root of the cloned or downloaded project directory on your computer
 5. Run `npm install` to install all dependencies
 6. Rename the `.env-example` file to `.env` and set the variable values by following the instruction in the file
-6. Finally Run `npm start` to start the server. You now have a running copy of Sendit application
+6. Finally Run `npm start` to start the server. You now have a running copy of Sendit application :sparkles:
 
 ### Access Endpoints 
 - Access the homepage on a browser through localhost:3000/api/v1
@@ -59,7 +59,7 @@ npm test
 #### Backend 
 - Nodejs/Expressjs
 #### Test Modules
-- Mocha, Chai and Chaihttp
+- [Mocha](https://mochajs.org/), [Chai](https://www.npmjs.com/package/chai) and [Chaihttp](https://www.npmjs.com/package/chai-http)
 ### Test Coverage Instrumentation and Report
 - [nyc](https://www.npmjs.com/package/nyc) 
 ### Linting And Style Guide
