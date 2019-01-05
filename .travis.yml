@@ -23,6 +23,6 @@ script:
  - npm run test
 
 after_script:
- - nyc report --reporter=text-lcov | coveralls && codecov
+ - nyc report --reporter=text-lcov | coveralls
  - ./cc-test-reporter after-build -t lcov --exit-code $TRAVIS_TEST_RESULT
  - codecov

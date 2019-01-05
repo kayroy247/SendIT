@@ -66,8 +66,7 @@
       "text",
       "html",
       "lcov",
-      "lcovonly",
-      "gcov"
+      "lcovonly"
     ],
     "sourceMap": false,
     "instrument": false
