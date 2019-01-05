@@ -5,12 +5,11 @@ SendIT is a courier service that helps users deliver parcels to different destin
 
 ### UI Templates
 This is the link to the [UI Templates](https://kayroy247.github.io/SendIT/) on Github Pages.
-User dashboard can be found [here](https://kayroy247.github.io/SendIT/UI/userDashboard.html)
 
 ### SendIT Restful API on heroku
 [SendIT API](https://sendit-1.herokuapp.com/)
 
-#### User Features
+### User Features
 - Create an account and login
 - Create a parcel delivery order
 - Change the destination of the user's parcel delivery order that is not delivered
@@ -24,7 +23,7 @@ User dashboard can be found [here](https://kayroy247.github.io/SendIT/UI/userDas
 - Change the status of parcel delivery order(new, Intransit, delivered)
 - Change the present location of a parcel delivery order
 
-#### Optional Features 
+### Optional Features 
 1. The application should display a Google Map with Markers showing the pickup location
     and the destination .
 2. The application should display computed travel distance and journey duration between
@@ -33,35 +32,43 @@ User dashboard can be found [here](https://kayroy247.github.io/SendIT/UI/userDas
 4. The user gets real-time email notification when Admin changes the present location of
    their parcel.
 
-### How To Install This
+### How To Install and Run This Application
 1. Download and install [GIT](https://git-scm.com/downloads), [NodeJs](https://nodejs.org/en/) and [Postgresql](https://www.postgresql.org/download/) on your computer
-2. Clone this repository by running the following on your command line interface
+2. Create a database (The name of this database will be included in the DATABASE_URL in the .env file).
+3. Clone this repository by running the following on your command line interface
 `
 git clone https://github.com/kayroy247/SendIT.git
 `
-3. Navigate to the root of the cloned or downloaded project directory on your computer
-4. Run `npm install` to install all dependencies
-5. Run `npm start` to start the server
-6. Access the homepage on a browser through localhost:3000/api/v1
-7. All other endpoints and request methods below can be accessed with [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en)
+4. Navigate to the root of the cloned or downloaded project directory on your computer
+5. Run `npm install` to install all dependencies
+6. Rename the `.env-example` file to `.env` and set the variable values by following the instruction in the file
+6. Finally Run `npm start` to start the server
+
+### Access Endpoints 
+7. Access the homepage on a browser through localhost:3000/api/v1
+8. All other endpoints and request methods below can be accessed with [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en)
 
 ### How to test
-```
+To run tests on the app run:
+`
 npm test
-
-```
+`
 ### Technology Used
 - Front End - HTML, CSS, JAVASCRIPT(ES6)
 - Backend - Nodejs/Expressjs
 - nodemailer
 - Joi Validator
 - babel 7
+
+### Test Modules
 - Mocha, Chai and Chaihttp
-- Nyc 
+### Test Coverage instrumentation
+- [Nyc](https://www.npmjs.com/package/nyc) 
+### Linting And Style Guide
 - Eslint(Airbnb style guide)
+### Continous Integration
+Travis-ci.org
  
-
-
 ### Available endpoints
 HTTP METHOD | ENDPOINTS | FUNCTIONALITY
 --- | --- | ---
@@ -79,14 +86,13 @@ POST | /api/v1/users/   | *Create a new user*
 DELETE | /api/v1/users/:id  | *Delete a user by id*
 DELETE | /api/v1/parcels/:id  | *Delete a user by id*
 
-
-
-
 ### Author
-Okunlade Kayode
+This application is written by Okunlade Kayode. 
 
-### LICENCE
-MIT
+### License
+This application is written under the MIT license. check the LICENSE.md file for details.
+
+
 
 
 
