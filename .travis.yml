@@ -20,6 +20,7 @@ before_script:
 
 script:
  - npm install -g codecov
+ - npm run test
 
 after_script:
  - nyc report --reporter=text-lcov | coveralls && codecov
