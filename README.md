@@ -62,8 +62,8 @@ npm test
 
 ### Test Modules
 - Mocha, Chai and Chaihttp
-### Test Coverage instrumentation
-- [Nyc](https://www.npmjs.com/package/nyc) 
+### Test Coverage Instrumentation and Report
+- [nyc](https://www.npmjs.com/package/nyc) 
 ### Linting And Style Guide
 - Eslint(Airbnb style guide)
 ### Continous Integration
