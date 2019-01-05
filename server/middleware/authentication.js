@@ -5,10 +5,11 @@ config();
 
 const jwtKey = process.env.JWT_KEY;
 
+
 const authenticateAdmin = (req, res, next) => {
-  const token = req.body.token || req.headers.authorization.split(' ')[1] || req.headers.token;
   let decoded;
   try {
+    const token = req.body.token || req.headers.authorization.split(' ')[1] || req.headers.token;
     decoded = jwt.verify(token, jwtKey);
     req.body.token = decoded.dbEmail;
     console.log(decoded.dbEmail.isadmin);
