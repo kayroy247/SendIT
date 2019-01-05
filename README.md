@@ -68,6 +68,10 @@ npm test
 - Eslint(Airbnb style guide)
 ### Continous Integration
 Travis-ci.org
+### Code Coverage and Maintenability
+- coveralls.io
+- codeclimate.com
+- codecov.io
  
 ### Available endpoints
 HTTP METHOD | ENDPOINTS | FUNCTIONALITY
