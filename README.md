@@ -32,9 +32,9 @@ This is the link to the [UI Templates](https://kayroy247.github.io/SendIT/) on G
 4. The user gets real-time email notification when Admin changes the present location of
    their parcel.
 
-### How To Install and Run This Application
+### How To Install and Run This Application on your Computer
 1. Download and install [GIT](https://git-scm.com/downloads), [NodeJs](https://nodejs.org/en/) and [Postgresql](https://www.postgresql.org/download/) on your computer
-2. Create a database (The name of this database will be included in the DATABASE_URL in the .env file).
+2. Create a database (The name of this database will be included in the DATABASE_URL variable in the .env file).
 3. Clone this repository by running the following on your command line interface
 `
 git clone https://github.com/kayroy247/SendIT.git
@@ -42,7 +42,7 @@ git clone https://github.com/kayroy247/SendIT.git
 4. Navigate to the root of the cloned or downloaded project directory on your computer
 5. Run `npm install` to install all dependencies
 6. Rename the `.env-example` file to `.env` and set the variable values by following the instruction in the file
-6. Finally Run `npm start` to start the server
+6. Finally Run `npm start` to start the server. You now have a running copy of Sendit application
 
 ### Access Endpoints 
 7. Access the homepage on a browser through localhost:3000/api/v1
@@ -90,7 +90,7 @@ DELETE | /api/v1/parcels/:id  | *Delete a user by id*
 This application is written by Okunlade Kayode. 
 
 ### License
-This application is written under the MIT license. check the LICENSE.md file for details.
+This application is written under the MIT license. Please check the LICENSE.md file for details.
 
 
 
