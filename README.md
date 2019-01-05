@@ -34,10 +34,17 @@ User dashboard can be found [here](https://kayroy247.github.io/SendIT/UI/userDas
    their parcel.
 
 ### How To Install This
-```
-npm install
+1. Download and install [GIT](https://git-scm.com/downloads), [NodeJs](https://nodejs.org/en/) and [Postgresql](https://www.postgresql.org/download/) on your computer
+2. Clone this repository by running the following on your command line interface
+`
+git clone https://github.com/kayroy247/SendIT.git
+`
+3. Navigate to the root of the cloned or downloaded project directory on your computer
+4. Run `npm install` to install all dependencies
+5. Run `npm start` to start the server
+6. Access the homepage on a browser through localhost:3000/api/v1
+7. All other endpoints and request methods below can be accessed with [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en)
 
-```
 ### How to test
 ```
 npm test
